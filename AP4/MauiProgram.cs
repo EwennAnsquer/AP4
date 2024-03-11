@@ -11,13 +11,24 @@ namespace AP4
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("InterBlack.ttf", "InterBlack");
+                    fonts.AddFont("InterBold.ttf", "InterBold");
+                    fonts.AddFont("InterExtraBold.ttf", "InterExtraBold");
+                    fonts.AddFont("InterExtraLight.ttf", "InterExtraLight");
+                    fonts.AddFont("InterLight.ttf", "InterLight");
+                    fonts.AddFont("InterMedium.ttf", "InterMedium");
+                    fonts.AddFont("InterRegular.ttf", "InterRegular");
+                    fonts.AddFont("InterSemiBold.ttf", "InterSemiBold");
+                    fonts.AddFont("InterThin.ttf", "Inter-Thin");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            #if DEBUG
+    		    builder.Logging.AddDebug();
+            #endif
+
+            builder.Services.AddSingleton<UserViewModel>();
+
+            builder.Services.AddSingleton<MainPage>();
 
             return builder.Build();
         }

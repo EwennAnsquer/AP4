@@ -8,7 +8,7 @@
     Title="AP4">
 
     <ShellContent
-        Title="Home"
+        Shell.NavBarIsVisible="False"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

@@ -57,9 +57,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+	  <None Remove="Resources\Fonts\InterBlack.ttf" />
+	  <None Remove="Resources\Fonts\InterBold.ttf" />
+	  <None Remove="Resources\Fonts\InterExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\InterExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\InterLight.ttf" />
+	  <None Remove="Resources\Fonts\InterMedium.ttf" />
+	  <None Remove="Resources\Fonts\InterRegular.ttf" />
+	  <None Remove="Resources\Fonts\InterSemiBold.ttf" />
+	  <None Remove="Resources\Fonts\InterThin.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\CommandeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\PlusView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>
