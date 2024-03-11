@@ -9,6 +9,7 @@ namespace AP4
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("InterBlack.ttf", "InterBlack");
@@ -26,7 +27,7 @@ namespace AP4
     		    builder.Logging.AddDebug();
             #endif
 
-            builder.Services.AddSingleton<UserViewModel>();
+            builder.Services.AddSingleton<MainPageViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
 

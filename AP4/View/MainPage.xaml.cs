@@ -1,16 +1,26 @@
-﻿namespace AP4
+﻿using System.Diagnostics;
+
+namespace AP4
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage(UserViewModel userViewModel)
+        readonly MainPageViewModel viewModel;
+        public MainPage(MainPageViewModel mainPageViewModel)
         {
             InitializeComponent();
-            BindingContext = userViewModel;
+            BindingContext = mainPageViewModel;
+            this.viewModel = mainPageViewModel;
             SetStyle();
         }
 
         void SetStyle()
         {
+        }
+
+        protected override void OnAppearing()
+        {
+            viewModel.GetCurrentOffreSpecialsCommand.Execute(null);
+            base.OnAppearing();
         }
 
     }

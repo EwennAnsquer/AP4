@@ -403,12 +403,12 @@
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
         <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
-        <Setter Property="Shell.ForegroundColor" Value="{OnPlatform WinUI={StaticResource Primary}, Default={StaticResource White}}" />
+        <Setter Property="Shell.ForegroundColor" Value="{OnPlatform WinUI={StaticResource Orange}, Default={StaticResource White}}" />
         <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}" />
         <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
         <Setter Property="Shell.NavBarHasShadow" Value="False" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray1}, Dark={StaticResource Black}}" />
         <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource Orange}, Dark={StaticResource White}}" />
         <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Orange}, Dark={StaticResource White}}" />
         <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
@@ -425,6 +425,35 @@
         <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource White}}" />
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+    <Style TargetType="Frame" x:Key="OffreSpecial">
+        <Setter Property="BackgroundColor" Value="{StaticResource Orange}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="OffreSpecialLabel">
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="OffreSpecialTitle">
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="InterBold" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="OffreSpecialSubTitle">
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="InterSemiBold" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="OffreSpecialMainTitle">
+        <Setter Property="TextColor" Value="{StaticResource Black}" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="Text" Value="Offre Spécial" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="Margin" Value="0,10,0,0" />
     </Style>
 
 </ResourceDictionary>

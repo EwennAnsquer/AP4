@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:AP4.Model"
              xmlns:viewmodel="clr-namespace:AP4.ViewModel"
-             x:DataType="viewmodel:UserViewModel"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:DataType="viewmodel:MainPageViewModel"
              x:Class="AP4.MainPage">
+
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="{StaticResource Orange}"/>
+    </Page.Behaviors>
 
     <VerticalStackLayout>
         <FlexLayout x:Name="HeroBanner"
@@ -33,10 +38,50 @@
                        FontFamily="InterBlack"
                        Style="{StaticResource HeroLabel}"/>
                 <Label Text=" Points" 
-                       FontSize="50"
-                       Style="{StaticResource HeroLabel}"/>
+                       FontSize="40"
+                       Style="{StaticResource HeroLabel}"
+                       VerticalOptions="Center"/>
             </HorizontalStackLayout>
         </FlexLayout>
+
+        <Label Style="{StaticResource OffreSpecialMainTitle}"/>
+
+        <ScrollView HorizontalOptions="FillAndExpand"
+                    Padding="20">
+
+            <CollectionView HorizontalOptions="FillAndExpand"
+                            ItemsSource="{Binding CurrentOffreSpecials}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:OffreSpecial">
+                        <Frame Padding="0">
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand"
+                                                 Style="{StaticResource OffreSpecial}"
+                                                 Padding="15"
+                                                 Spacing="10">  
+                                <Label Text="{Binding nom}" 
+                                       Style="{StaticResource OffreSpecialTitle}"
+                                       HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding description}"
+                                       Style="{StaticResource OffreSpecialSubTitle}"/>
+                                <HorizontalStackLayout>
+                                    <Label Text="Du " 
+                                           Style="{StaticResource OffreSpecialLabel}"/>
+                                    <Label Text="{Binding dateDebut, StringFormat='{0:dd/MM/yyyy}'}"
+                                           Style="{StaticResource OffreSpecialLabel}"/>
+                                    <Label Text=" au " 
+                                           Style="{StaticResource OffreSpecialLabel}"/>
+                                    <Label Text="{Binding dateFin, StringFormat='{0:dd/MM/yyyy}'}" 
+                                           Style="{StaticResource OffreSpecialLabel}"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            
+        </ScrollView>
     </VerticalStackLayout>
 
 </ContentPage>
