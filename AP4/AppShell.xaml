@@ -4,12 +4,26 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AP4"
-    Shell.FlyoutBehavior="Disabled"
-    Title="AP4">
+    xmlns:view="clr-namespace:AP4.View">
 
-    <ShellContent
-        Shell.NavBarIsVisible="False"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent Title="Accueil"
+                      Shell.NavBarIsVisible="False"
+                      ContentTemplate="{DataTemplate local:MainPage}"
+                      Route="MainPage"
+                      Icon="Icones/maison.svg"/>
+
+        <ShellContent Title="Commande"
+                      Shell.NavBarIsVisible="False"
+                      ContentTemplate="{DataTemplate view:CommandeView}"
+                      Route="CommandeView"
+                      Icon="Icones/cadi.svg"/>
+
+        <ShellContent Title="Plus"
+                      Shell.NavBarIsVisible="False"
+                      ContentTemplate="{DataTemplate view:PlusView}"
+                      Route="PlusView"
+                      Icon="Icones/points.svg"/>
+    </TabBar>
 
 </Shell>

@@ -8,25 +8,33 @@
 
     <VerticalStackLayout>
         <FlexLayout x:Name="HeroBanner"
-                    BackgroundColor="Orange"
-                    HeightRequest="200"
+                    BackgroundColor="{StaticResource Orange}"
                     JustifyContent="SpaceBetween"
                     AlignItems="Center"
-                    Direction="Column">  
-            <HorizontalStackLayout Padding="20">
+                    Direction="Column"
+                    HorizontalOptions="FillAndExpand">
+            <StackLayout Padding="20"
+                         Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand">
                 <Label Text="Hello " 
-                       FontSize="40"
-                       FontFamily="InterSemiBold"/>
+                       FontSize="20"
+                       FontFamily="InterSemiBold"
+                       Style="{StaticResource HeroLabel}"/>
                 <Label Text="{Binding User.Name}" 
-                       FontSize="40"
-                       FontFamily="InterSemiBold"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Padding="20">
+                       FontSize="20"
+                       FontFamily="InterSemiBold"
+                       Style="{StaticResource HeroLabel}"
+                       HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <HorizontalStackLayout Padding="20"
+                                   HorizontalOptions="FillAndExpand">
                 <Label Text="{Binding User.Point}" 
                        FontSize="50"
-                       FontFamily="InterBlack"/>
+                       FontFamily="InterBlack"
+                       Style="{StaticResource HeroLabel}"/>
                 <Label Text=" Points" 
-                       FontSize="50"/>
+                       FontSize="50"
+                       Style="{StaticResource HeroLabel}"/>
             </HorizontalStackLayout>
         </FlexLayout>
     </VerticalStackLayout>

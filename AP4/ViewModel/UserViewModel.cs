@@ -8,7 +8,7 @@ public partial class UserViewModel : BaseViewModel
     {
         User = new User();
         User.Id = 1;
-        User.Name = "Test";
+        User.Name = "Anne Marie Françoise fdhgugdfjugiufdghiufn uit";
         User.Point = 100;
     }
 }

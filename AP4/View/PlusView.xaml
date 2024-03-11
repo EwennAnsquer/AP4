@@ -3,5 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AP4.View.PlusView"
              Title="PlusView">
-
+    <Label Text="Je suis dans Plus " />
 </ContentPage>
