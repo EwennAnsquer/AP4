@@ -1,28 +1,27 @@
-﻿using System.Diagnostics;
+﻿namespace AP4;
 
-namespace AP4
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    readonly MainPageViewModel viewModel;
+    public MainPage(MainPageViewModel mainPageViewModel)
     {
-        readonly MainPageViewModel viewModel;
-        public MainPage(MainPageViewModel mainPageViewModel)
-        {
-            InitializeComponent();
-            BindingContext = mainPageViewModel;
-            this.viewModel = mainPageViewModel;
-            SetStyle();
-        }
+        InitializeComponent();
+        BindingContext = mainPageViewModel;
+        this.viewModel = mainPageViewModel;
+    }
 
-        void SetStyle()
+    protected async override void OnAppearing()
+    {
+        if (viewModel.User == null)
         {
+            await Shell.Current.GoToAsync(nameof(ConnectionView));
         }
-
-        protected override void OnAppearing()
+        else
         {
+            viewModel.GetCurrentPointsCommand.Execute(null);
             viewModel.GetCurrentOffreSpecialsCommand.Execute(null);
             base.OnAppearing();
         }
-
     }
 
 }

@@ -2,7 +2,12 @@
 
 public class User
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Point {  get; set; }
+    public int id { get; set; }
+    public string email { get; set; }
+    public int StockPointsFidelite { get; set; }
+    public object leBlason { get; set; }
+    public string nom { get; set; }
+    public string prenom { get; set; }
+    public string dateNaissance { get; set; }
+    public string telephone { get; set; }
 }

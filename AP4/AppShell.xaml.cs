@@ -5,6 +5,9 @@
         public AppShell()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute(nameof(InscriptionView), typeof(InscriptionView));
+            Routing.RegisterRoute(nameof(ConnectionView), typeof(ConnectionView));
         }
     }
 }

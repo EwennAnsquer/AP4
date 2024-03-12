@@ -25,11 +25,18 @@ namespace AP4
 
             #if DEBUG
     		    builder.Logging.AddDebug();
-            #endif
+#endif
+
+            builder.Services.AddSingleton<LoginService>();
+            builder.Services.AddSingleton<RegisterService>();
 
             builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddTransient<ConnectionViewModel>();
+            builder.Services.AddTransient<InscriptionViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<ConnectionView>();
+            builder.Services.AddTransient<InscriptionView>();
 
             return builder.Build();
         }

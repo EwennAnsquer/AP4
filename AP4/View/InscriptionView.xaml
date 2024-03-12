@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AP4.Model"
+             xmlns:viewmodel="clr-namespace:AP4.ViewModel"
+             x:DataType="viewmodel:InscriptionViewModel"
+             x:Class="AP4.View.InscriptionView">
+
+    <ScrollView>
+        <Frame BackgroundColor="{StaticResource Orange}"
+               HorizontalOptions="Fill"
+               VerticalOptions="Center"
+               Margin="20"> 
+            <VerticalStackLayout Spacing="15">
+                <VerticalStackLayout>
+                    <Label Text="Nom" />
+                    <Entry Text="{Binding Nom}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Prenom" />
+                    <Entry Text="{Binding Prenom}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Mail" />
+                    <Entry Text="{Binding Mail}"
+                           Keyboard="Email"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Mot de Passe" />
+                    <Entry IsPassword="True"
+                           Text="{Binding Password}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Téléphone" />
+                    <Entry Text="{Binding Telephone}"
+                           Keyboard="Telephone"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Date d'Anniversaire" />
+                    <Entry Text="{Binding DateAnniversaire}"/>
+                </VerticalStackLayout>
+                <Button Text="Inscription" 
+                        Command="{Binding RegisterCommand}"/>
+                <Button Text="Vous avez déjà un compte ? Se connecter"
+                        Command="{Binding GoToLoginCommand}" />
+            </VerticalStackLayout>
+
+        </Frame>
+    </ScrollView>
+
+</ContentPage>

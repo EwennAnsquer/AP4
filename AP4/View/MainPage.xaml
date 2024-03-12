@@ -4,61 +4,100 @@
              xmlns:model="clr-namespace:AP4.Model"
              xmlns:viewmodel="clr-namespace:AP4.ViewModel"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:local="clr-namespace:AP4.Converters"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="AP4.MainPage">
+
+    <ContentPage.Resources>
+        <local:FormatLoosePointLabel x:Key="formatLoosePointLabel" />
+    </ContentPage.Resources>
 
     <Page.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{StaticResource Orange}"/>
     </Page.Behaviors>
 
-    <VerticalStackLayout>
-        <FlexLayout x:Name="HeroBanner"
-                    BackgroundColor="{StaticResource Orange}"
-                    JustifyContent="SpaceBetween"
-                    AlignItems="Center"
-                    Direction="Column"
-                    HorizontalOptions="FillAndExpand">
-            <StackLayout Padding="20"
-                         Orientation="Horizontal"
-                         HorizontalOptions="FillAndExpand">
-                <Label Text="Hello " 
-                       FontSize="20"
-                       FontFamily="InterSemiBold"
-                       Style="{StaticResource HeroLabel}"/>
-                <Label Text="{Binding User.Name}" 
-                       FontSize="20"
-                       FontFamily="InterSemiBold"
-                       Style="{StaticResource HeroLabel}"
-                       HorizontalOptions="FillAndExpand"/>
-            </StackLayout>
-            <HorizontalStackLayout Padding="20"
-                                   HorizontalOptions="FillAndExpand">
-                <Label Text="{Binding User.Point}" 
-                       FontSize="50"
-                       FontFamily="InterBlack"
-                       Style="{StaticResource HeroLabel}"/>
-                <Label Text=" Points" 
-                       FontSize="40"
-                       Style="{StaticResource HeroLabel}"
-                       VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-        </FlexLayout>
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout>
+            <FlexLayout x:Name="HeroBanner"
+                        BackgroundColor="{StaticResource Orange}"
+                        JustifyContent="SpaceBetween"
+                        AlignItems="Center"
+                        Direction="Column"
+                        HorizontalOptions="FillAndExpand">
+                <StackLayout Padding="20"
+                             Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand">
+                    <Label Text="{Binding User.prenom, StringFormat='Hello {0}'}" 
+                           FontSize="20"
+                           FontFamily="InterSemiBold"
+                           Style="{StaticResource HeroLabel}"
+                           HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <HorizontalStackLayout Padding="20"
+                                       HorizontalOptions="FillAndExpand">
+                    <Label Text="{Binding NbPoints}" 
+                           FontSize="50"
+                           FontFamily="InterBlack"
+                           Style="{StaticResource HeroLabel}"/>
+                    <Label Text=" Points" 
+                           FontSize="40"
+                           Style="{StaticResource HeroLabel}"
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+                <CollectionView ItemsSource="{Binding CloseToEndPoints}"
+                                Margin="0,0,0,10">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="5"
+                                           Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:PointFidelite">
+                            <Frame Padding="10"
+                                   WidthRequest="220"
+                                   BackgroundColor="Red"
+                                   HorizontalOptions="FillAndExpand"
+                                   BorderColor="Red">
+                                <Label 
+                                       TextColor="White"
+                                       FontSize="20"
+                                       FontFamily="InterSemiBold"
+                                       TextTransform="Uppercase"
+                                       HorizontalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="{Binding points, StringFormat='-{0} points dans '}"
+                                                      TextColor="White"/>
+                                                <Span Text="{Binding dateFin, Converter={StaticResource formatLoosePointLabel}, StringFormat=' {0} jours !'}" 
+                                                      TextColor="White"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
 
-        <Label Style="{StaticResource OffreSpecialMainTitle}"/>
+                                </Label>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </FlexLayout>
 
-        <ScrollView HorizontalOptions="FillAndExpand"
-                    Padding="20">
+            <Label Style="{StaticResource OffreSpecialMainTitle}"/>
 
             <CollectionView HorizontalOptions="FillAndExpand"
-                            ItemsSource="{Binding CurrentOffreSpecials}">
-
+                            ItemsSource="{Binding CurrentOffreSpecials}"
+                            Margin="20"
+                            VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" 
+                                       ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OffreSpecial">
                         <Frame Padding="0">
                             <VerticalStackLayout HorizontalOptions="FillAndExpand"
                                                  Style="{StaticResource OffreSpecial}"
                                                  Padding="15"
-                                                 Spacing="10">  
+                                                 Spacing="10">
                                 <Label Text="{Binding nom}" 
                                        Style="{StaticResource OffreSpecialTitle}"
                                        HorizontalOptions="CenterAndExpand"/>
@@ -78,10 +117,9 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                
+
             </CollectionView>
-            
-        </ScrollView>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>
