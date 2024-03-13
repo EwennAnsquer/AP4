@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AP4.Controls;
+using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.PlatformConfiguration;
 
 namespace AP4
 {
@@ -23,20 +25,45 @@ namespace AP4
                     fonts.AddFont("InterThin.ttf", "Inter-Thin");
                 });
 
-            #if DEBUG
-    		    builder.Logging.AddDebug();
+            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
+            {
+                if(view is BorderlessEntry)
+                {
+#if ANDROID
+                    handler.PlatformView.Background = null;
+                    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.White);
+#endif
+                }
+            });
+
+            Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
+            {
+                if (view is BorderlessDatePicker)
+                {
+#if ANDROID
+                    handler.PlatformView.Background = null;
+                    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.White);
+#endif
+                }
+            });
+
+#if DEBUG
+                builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddSingleton<LoginService>();
             builder.Services.AddSingleton<RegisterService>();
+            builder.Services.AddSingleton<CommandeService>();
 
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddTransient<ConnectionViewModel>();
             builder.Services.AddTransient<InscriptionViewModel>();
+            builder.Services.AddSingleton<CommandeViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<ConnectionView>();
             builder.Services.AddTransient<InscriptionView>();
+            builder.Services.AddSingleton<CommandeView>();
 
             return builder.Build();
         }

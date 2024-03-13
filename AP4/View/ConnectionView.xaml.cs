@@ -1,3 +1,5 @@
+using Microsoft.Maui.Controls.PlatformConfiguration;
+
 namespace AP4.View;
 
 public partial class ConnectionView : ContentPage

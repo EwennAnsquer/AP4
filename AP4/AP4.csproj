@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Fonts\InterSemiBold.ttf" />
 	  <None Remove="Resources\Fonts\InterThin.ttf" />
 	  <None Remove="Resources\Images\points.svg" />
+	  <None Remove="Resources\Images\tacos.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -101,5 +102,7 @@
 	  <MauiImage Include="Resources\Images\Icones\maison.svg" />
 	  <MauiImage Include="Resources\Images\Icones\points.svg" />
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadUnhandledDeviceExceptionAP4HideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

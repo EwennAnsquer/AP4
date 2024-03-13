@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AP4.Model"
+             xmlns:viewmodel="clr-namespace:AP4.ViewModel"
              x:Class="AP4.View.CommandeView"
+             x:DataType="viewmodel:CommandeViewModel"
              Title="CommandeView">
 
-    <Label Text="Je suis dans Commande " />
+    <VerticalStackLayout>
+        <ScrollView Orientation="Horizontal"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalScrollBarVisibility="Never">
+            <CollectionView HorizontalOptions="FillAndExpand"
+                            ItemsSource="{Binding AllProductCategorie}"
+                            x:Name="categorieColl"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding FirstProductCategorie}"
+                            SelectionChangedCommand="{Binding DisplayCategorieCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference categorieColl}}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ProductCategorie">
+                        <VerticalStackLayout HorizontalOptions="Fill"
+                                             Spacing="2">
+                            <Image Source="{Binding imageUrl}"
+                                   Aspect="AspectFill"
+                                   HorizontalOptions="CenterAndExpand"
+                                   WidthRequest="65"
+                                   Margin="20,10,20,0"/>
+                            <Label Text="{Binding nom}" 
+                                   FontSize="15"
+                                   FontFamily="InterSemiBold"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>

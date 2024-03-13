@@ -3,49 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:AP4.Model"
              xmlns:viewmodel="clr-namespace:AP4.ViewModel"
+             xmlns:controls="clr-namespace:AP4.Controls"
              x:DataType="viewmodel:InscriptionViewModel"
              x:Class="AP4.View.InscriptionView">
 
     <ScrollView>
-        <Frame BackgroundColor="{StaticResource Orange}"
-               HorizontalOptions="Fill"
-               VerticalOptions="Center"
-               Margin="20"> 
-            <VerticalStackLayout Spacing="15">
-                <VerticalStackLayout>
-                    <Label Text="Nom" />
-                    <Entry Text="{Binding Nom}"/>
+        <VerticalStackLayout>
+            <Frame BackgroundColor="{StaticResource Orange}"
+                   Margin="20"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Center"
+                   BorderColor="{StaticResource Orange}">
+                <VerticalStackLayout Spacing="15">
+                    <VerticalStackLayout>
+                        <Label Text="Nom" 
+                               TextColor="White"/>
+                        <controls:BorderlessEntry Text="{Binding Nom}"
+                                                  TextColor="{StaticResource Orange}"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Prenom" 
+                               TextColor="White"/>
+                        <controls:BorderlessEntry Text="{Binding Prenom}"
+                                                  TextColor="{StaticResource Orange}"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Mail" 
+                               TextColor="White"/>
+                        <controls:BorderlessEntry Text="{Binding Mail}"
+                                                  Keyboard="Email"
+                                                  TextColor="{StaticResource Orange}"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Mot de Passe" 
+                               TextColor="White"/>
+                        <controls:BorderlessEntry IsPassword="True"
+                                                  Text="{Binding Password}"
+                                                  TextColor="{StaticResource Orange}"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Téléphone" 
+                               TextColor="White"/>
+                        <controls:BorderlessEntry Text="{Binding Telephone}"
+                                                  Keyboard="Telephone"
+                                                  TextColor="{StaticResource Orange}"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Date d'Anniversaire" 
+                               TextColor="White"/>
+                        <controls:BorderlessDatePicker TextColor="{StaticResource Orange}"
+                                                       Date="{Binding DateAnniversaire}"
+                                                       Format="yyyy/MM/dd"/>
+                    </VerticalStackLayout>
+                    <Button Text="Inscription" 
+                            Command="{Binding RegisterCommand}"
+                            Style="{StaticResource reverseButtonStyle}"
+                            BackgroundColor="White"
+                            TextColor="{StaticResource Orange}"/>
                 </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Prenom" />
-                    <Entry Text="{Binding Prenom}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Mail" />
-                    <Entry Text="{Binding Mail}"
-                           Keyboard="Email"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Mot de Passe" />
-                    <Entry IsPassword="True"
-                           Text="{Binding Password}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Téléphone" />
-                    <Entry Text="{Binding Telephone}"
-                           Keyboard="Telephone"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Date d'Anniversaire" />
-                    <Entry Text="{Binding DateAnniversaire}"/>
-                </VerticalStackLayout>
-                <Button Text="Inscription" 
-                        Command="{Binding RegisterCommand}"/>
-                <Button Text="Vous avez déjà un compte ? Se connecter"
-                        Command="{Binding GoToLoginCommand}" />
-            </VerticalStackLayout>
 
-        </Frame>
+            </Frame>
+            <Button Text="Vous avez déjà un compte ? Se connecter"
+                    Command="{Binding GoToLoginCommand}" 
+                    Margin="20,0,20,0"
+                    BackgroundColor="{StaticResource Orange}"/>
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>
