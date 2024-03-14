@@ -7,7 +7,7 @@
              x:DataType="viewmodel:CommandeViewModel"
              Title="CommandeView">
 
-    <VerticalStackLayout>
+    <StackLayout>
         <ScrollView Orientation="Horizontal"
                     HorizontalOptions="FillAndExpand"
                     HorizontalScrollBarVisibility="Never">
@@ -39,5 +39,56 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
-    </VerticalStackLayout>
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never"
+                    Orientation="Vertical">
+            <CollectionView ItemsSource="{Binding DisplayProducts}"
+                            Margin="20"
+                            VerticalOptions="FillAndExpand"
+                            VerticalScrollBarVisibility="Never"
+                            HorizontalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="2"
+                                     Orientation="Vertical"
+                                     HorizontalItemSpacing="50"
+                                     VerticalItemSpacing="50"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Product">
+                        <Frame BorderColor="White"
+                               BackgroundColor="{StaticResource Gray100}"
+                               Padding="0"
+                               CornerRadius="35"
+                               HorizontalOptions="Center">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CommandeViewModel}}, Path=GoToProductPriceCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <StackLayout>
+                                <Image Source="{Binding imageUrl}"
+                                       Aspect="AspectFill" 
+                                       HorizontalOptions="FillAndExpand"
+                                       BackgroundColor="White"/>
+                                <Label Text="{Binding nom}" 
+                                       TextTransform="Uppercase"
+                                       HorizontalTextAlignment="Center"
+                                       Margin="10"/>
+                                <Label Text="{Binding prix, StringFormat='{0}€'}" 
+                                       TextTransform="Uppercase"
+                                       HorizontalTextAlignment="Center"
+                                       Margin="10"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <Frame BackgroundColor="{StaticResource Orange}"
+               HorizontalOptions="FillAndExpand"
+               BorderColor="{StaticResource Orange}"
+               HeightRequest="50" 
+               Margin="20"
+               IsVisible="False"/>
+    </StackLayout>
 </ContentPage>

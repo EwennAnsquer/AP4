@@ -21,14 +21,14 @@ public partial class MainPageViewModel : BaseViewModel
     {
         if(user == null)
         {
-            /*User = new User();
+            User = new User();
             User.id = 1;
             User.nom = "Nom";
             User.prenom = "prenom";
             User.telephone = "1234567890";
             User.dateNaissance = "2003-08-09";
             User.email = "email@email.com";
-            User.StockPointsFidelite = 100;*/
+            User.StockPointsFidelite = 100;
         }
 
         if (!allOffreSpecials.Any())

@@ -59,11 +59,13 @@ namespace AP4
             builder.Services.AddTransient<ConnectionViewModel>();
             builder.Services.AddTransient<InscriptionViewModel>();
             builder.Services.AddSingleton<CommandeViewModel>();
+            builder.Services.AddSingleton<ProductPriceViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<ConnectionView>();
             builder.Services.AddTransient<InscriptionView>();
             builder.Services.AddSingleton<CommandeView>();
+            builder.Services.AddSingleton<ProductPriceView>();
 
             return builder.Build();
         }

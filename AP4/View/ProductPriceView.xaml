@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AP4.Model"
+             xmlns:viewmodel="clr-namespace:AP4.ViewModel"
+             x:Class="AP4.View.ProductPriceView"
+             x:DataType="viewmodel:ProductPriceViewModel"
+             Shell.BackgroundColor="{StaticResource Orange}"
+             Shell.TitleColor="White"
+             Title='{Binding Product.nom, StringFormat="Achat d&apos;un {0}"}'>
+
+    <FlexLayout Direction="Column"
+                JustifyContent="Center"
+                Margin="40">
+        <Button Text="{Binding Product.prix, StringFormat='Acheter pour {0}€'}"
+                BackgroundColor="{StaticResource Orange}"
+                FontSize="20"
+                FontFamily="InterBold"
+                Padding="20"
+                Margin="0,0,0,50"/>
+        <Button Text="{Binding Product.pointGagne, StringFormat='Échanger pour {0} points'}"
+                BackgroundColor="{StaticResource Orange}"
+                FontSize="20"
+                FontFamily="InterBold"
+                Padding="20"/>
+    </FlexLayout>
+
+</ContentPage>

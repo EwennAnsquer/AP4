@@ -92,6 +92,9 @@
 	  <MauiXaml Update="View\InscriptionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\ProductPriceView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\PlusView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -101,6 +104,12 @@
 	  <MauiImage Include="Resources\Images\Icones\cadi.svg" />
 	  <MauiImage Include="Resources\Images\Icones\maison.svg" />
 	  <MauiImage Include="Resources\Images\Icones\points.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\ProductPriceView.xaml.cs">
+	    <DependentUpon>ProductPriceView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadUnhandledDeviceExceptionAP4HideInfoBar="True" /></VisualStudio></ProjectExtensions>
