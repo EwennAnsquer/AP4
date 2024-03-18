@@ -87,8 +87,31 @@
         <Frame BackgroundColor="{StaticResource Orange}"
                HorizontalOptions="FillAndExpand"
                BorderColor="{StaticResource Orange}"
-               HeightRequest="50" 
                Margin="20"
-               IsVisible="False"/>
+               IsVisible="{Binding IsProductsCommandeFill}"
+               Padding="0">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToAchatViewCommand}"/>
+            </Frame.GestureRecognizers>
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween"
+                        AlignItems="Center"
+                        HeightRequest="20"
+                        Margin="20">
+                <Label Text="Mon Panier"
+                       TextColor="White"/>
+                <HorizontalStackLayout>
+                    <Label Text="{Binding ProductsCommandTotalPoints, StringFormat='{0} Points'}"
+                           TextColor="White"
+                           x:Name="LabelTotalPoints"/>
+                    <Label Text=" et " 
+                           TextColor="White"
+                           x:Name="LabelEt"/>
+                    <Label Text="{Binding ProductsCommandTotalPrice, StringFormat='{0}€'}"
+                           TextColor="White"
+                           x:Name="LabelTotalPrice"/>
+                </HorizontalStackLayout>
+            </FlexLayout>
+        </Frame>
     </StackLayout>
 </ContentPage>

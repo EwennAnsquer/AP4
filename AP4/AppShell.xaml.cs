@@ -9,6 +9,7 @@
             Routing.RegisterRoute(nameof(InscriptionView), typeof(InscriptionView));
             Routing.RegisterRoute(nameof(ConnectionView), typeof(ConnectionView));
             Routing.RegisterRoute(nameof(ProductPriceView), typeof(ProductPriceView));
+            Routing.RegisterRoute(nameof(AchatView), typeof(AchatView));
         }
     }
 }

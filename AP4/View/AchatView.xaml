@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AP4.Model"
+             xmlns:viewmodel="clr-namespace:AP4.ViewModel"
+             x:Class="AP4.View.AchatView"
+             x:DataType="viewmodel:CommandeViewModel"
+             Title="Achat"
+             Shell.BackgroundColor="{StaticResource Orange}"
+             Shell.TitleColor="White">
+
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding ProductsCommande}"
+                        Margin="20">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="15" 
+                                   Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.EmptyView>
+                <Label Text="Voux n'avez pas de produits à acheter." 
+                       TextColor="{StaticResource Orange}"/>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Commande">
+                    <Frame Padding="0"
+                           BackgroundColor="{StaticResource Orange}"
+                           BorderColor="{StaticResource Orange}"
+                           HeightRequest="60">
+                        <FlexLayout Direction="Row"
+                                    JustifyContent="SpaceBetween"
+                                    AlignItems="Center"
+                                    Margin="10">
+                            <Label Text="{Binding product.nom}" 
+                                   TextColor="White"/>
+                            <Label Text="{Binding monnaie}" 
+                                   TextColor="White"/>
+                            <Button Text="Effacer" 
+                                    BackgroundColor="{StaticResource Orange}" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CommandeViewModel}}, Path=DeleteItemCommand}"
+                                    CommandParameter="{Binding .}"/>
+                        </FlexLayout>
+                    </Frame>        
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>

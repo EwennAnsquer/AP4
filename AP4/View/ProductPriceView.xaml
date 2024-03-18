@@ -4,7 +4,7 @@
              xmlns:model="clr-namespace:AP4.Model"
              xmlns:viewmodel="clr-namespace:AP4.ViewModel"
              x:Class="AP4.View.ProductPriceView"
-             x:DataType="viewmodel:ProductPriceViewModel"
+             x:DataType="viewmodel:CommandeViewModel"
              Shell.BackgroundColor="{StaticResource Orange}"
              Shell.TitleColor="White"
              Title='{Binding Product.nom, StringFormat="Achat d&apos;un {0}"}'>
@@ -17,12 +17,16 @@
                 FontSize="20"
                 FontFamily="InterBold"
                 Padding="20"
-                Margin="0,0,0,50"/>
+                Margin="0,0,0,50"
+                Command="{Binding GoToBackFromProductPriceViewCommand}"
+                CommandParameter="currency"/>
         <Button Text="{Binding Product.pointGagne, StringFormat='Échanger pour {0} points'}"
                 BackgroundColor="{StaticResource Orange}"
                 FontSize="20"
                 FontFamily="InterBold"
-                Padding="20"/>
+                Padding="20"
+                Command="{Binding GoToBackFromProductPriceViewCommand}"
+                CommandParameter="points"/>
     </FlexLayout>
 
 </ContentPage>

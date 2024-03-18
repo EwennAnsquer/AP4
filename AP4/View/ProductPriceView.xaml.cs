@@ -2,8 +2,8 @@ namespace AP4.View;
 
 public partial class ProductPriceView : ContentPage
 {
-	readonly ProductPriceViewModel viewModel;
-	public ProductPriceView(ProductPriceViewModel viewModel)
+	readonly CommandeViewModel viewModel;
+	public ProductPriceView(CommandeViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
