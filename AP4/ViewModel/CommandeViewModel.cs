@@ -203,4 +203,15 @@ public partial class CommandeViewModel : BaseViewModel
         if(ProductsCommande.Count==0) IsProductsCommandeFill=false;
     }
 
+    [RelayCommand]
+    async Task Pay()
+    {
+        await Shell.Current.GoToAsync("///CommandeView");
+
+        IsProductsCommandeFill = false;
+
+        ProductsCommande.Clear();
+
+        ((AppShell)App.Current.MainPage).SwitchtoTab(0);
+    }
 }

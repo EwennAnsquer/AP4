@@ -4,7 +4,6 @@ public partial class MainPageViewModel : BaseViewModel
 {
     [ObservableProperty]
     User user;
-
     List<OffreSpecial> allOffreSpecials { get; set; } = new();
 
     [ObservableProperty]
@@ -19,16 +18,18 @@ public partial class MainPageViewModel : BaseViewModel
     List<PointFidelite> closeToEndPoints = new();
     public MainPageViewModel()
     {
-        if(user == null)
+        if(Constantes.CurrentUser == null)
         {
-            User = new User();
-            User.id = 1;
-            User.nom = "Nom";
-            User.prenom = "prenom";
-            User.telephone = "1234567890";
-            User.dateNaissance = "2003-08-09";
-            User.email = "email@email.com";
-            User.StockPointsFidelite = 100;
+            Constantes.CurrentUser = new User();
+            Constantes.CurrentUser.id = 1;
+            Constantes.CurrentUser.nom = "Nom";
+            Constantes.CurrentUser.prenom = "prenom";
+            Constantes.CurrentUser.telephone = "1234567890";
+            Constantes.CurrentUser.dateNaissance = "2003-08-09";
+            Constantes.CurrentUser.email = "email@email.com";
+            Constantes.CurrentUser.StockPointsFidelite = 100;
+
+            User = CurrentUser;
         }
 
         if (!allOffreSpecials.Any())
@@ -97,10 +98,24 @@ public partial class MainPageViewModel : BaseViewModel
             p4.effect = '+';
             p4.points = 20;
 
+            PointFidelite p5 = new PointFidelite();
+            p5.dateDebut = new DateTime(2024, 03, 18);
+            p5.dateFin = new DateTime(2024, 04, 18);
+            p5.effect = '-';
+            p5.points = 5;
+
+            PointFidelite p6 = new PointFidelite();
+            p6.dateDebut = new DateTime(2024, 02, 20);
+            p6.dateFin = new DateTime(2024, 03, 20);
+            p6.effect = '+';
+            p6.points = 10;
+
             allPoints.Add(p1);
             allPoints.Add(p2);
             allPoints.Add(p3);
             allPoints.Add(p4);
+            allPoints.Add(p5);
+            allPoints.Add(p6);
         }
     }
 
@@ -132,23 +147,26 @@ public partial class MainPageViewModel : BaseViewModel
                     NbPoints += p.points;
                 }
 
-                if (ifPointCloseToEnd(p))
+                if (p.dateDebut <= DateTime.Now && p.effect == '-')
                 {
-                    CloseToEndPoints.Add(p);
+                    NbPoints -= p.points;
+                }
+
+                if (p.effect=='+')
+                {
+                    ifPointCloseToEnd(p);
                 }
             }
         }
     }
 
-    private bool ifPointCloseToEnd(PointFidelite p)
+    private async void ifPointCloseToEnd(PointFidelite p)
     {
         TimeSpan dif = (p.dateFin - DateTime.Now);
 
-        if (dif >= TimeSpan.Zero && dif <= TimeSpan.FromDays(7))
+        if (dif <= TimeSpan.FromDays(7) && dif >= TimeSpan.Zero)
         {
-            return true;
+            CloseToEndPoints.Add(p);
         }
-
-        return false;
     }
 }

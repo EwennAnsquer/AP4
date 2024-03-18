@@ -11,7 +11,8 @@
 
     <StackLayout>
         <CollectionView ItemsSource="{Binding ProductsCommande}"
-                        Margin="20">
+                        Margin="20"
+                        VerticalOptions="FillAndExpand">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="15" 
                                    Orientation="Vertical"/>
@@ -43,6 +44,11 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button BackgroundColor="{StaticResource Orange}"
+                Text="Payer"
+                TextColor="White"
+                Margin="20"
+                Command="{Binding PayCommand}"/>
     </StackLayout>
 
 </ContentPage>

@@ -14,3 +14,4 @@ global using System.Threading.Tasks;
 global using CommunityToolkit.Maui;
 global using System.Globalization;
 global using System.Collections.ObjectModel;
+global using static AP4.Constantes;

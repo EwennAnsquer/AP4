@@ -12,7 +12,7 @@ public partial class MainPage : ContentPage
 
     protected async override void OnAppearing()
     {
-        if (viewModel.User == null)
+        if (Constantes.CurrentUser == null)
         {
             await Shell.Current.GoToAsync(nameof(ConnectionView));
         }

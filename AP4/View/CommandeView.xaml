@@ -5,7 +5,8 @@
              xmlns:viewmodel="clr-namespace:AP4.ViewModel"
              x:Class="AP4.View.CommandeView"
              x:DataType="viewmodel:CommandeViewModel"
-             Title="CommandeView">
+             Title="CommandeView"
+             Shell.NavBarIsVisible="False">
 
     <StackLayout>
         <ScrollView Orientation="Horizontal"

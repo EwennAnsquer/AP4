@@ -6,24 +6,27 @@
     xmlns:local="clr-namespace:AP4"
     xmlns:view="clr-namespace:AP4.View">
 
-    <TabBar>
+    <TabBar x:Name="shelltabbar">
         <ShellContent Title="Accueil"
                       Shell.NavBarIsVisible="False"
                       ContentTemplate="{DataTemplate local:MainPage}"
                       Route="MainPage"
-                      Icon="Icones/maison.svg"/>
+                      Icon="Icones/maison.svg"
+                      x:Name="shelltab_0"/>
 
         <ShellContent Title="Commande"
                       Shell.NavBarIsVisible="False"
                       ContentTemplate="{DataTemplate view:CommandeView}"
                       Route="CommandeView"
-                      Icon="Icones/cadi.svg"/>
+                      Icon="Icones/cadi.svg"
+                      x:Name="shelltab_1"/>
 
         <ShellContent Title="Plus"
                       Shell.NavBarIsVisible="False"
                       ContentTemplate="{DataTemplate view:PlusView}"
                       Route="PlusView"
-                      Icon="Icones/points.svg"/>
+                      Icon="Icones/points.svg"
+                      x:Name="shelltab_2"/>
     </TabBar>
 
 </Shell>

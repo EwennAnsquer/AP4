@@ -6,7 +6,8 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              xmlns:local="clr-namespace:AP4.Converters"
              x:DataType="viewmodel:MainPageViewModel"
-             x:Class="AP4.MainPage">
+             x:Class="AP4.MainPage"
+             Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
         <local:FormatLoosePointLabel x:Key="formatLoosePointLabel" />
