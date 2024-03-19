@@ -14,10 +14,11 @@ public partial class MainPage : ContentPage
     {
         if (Constantes.CurrentUser == null)
         {
-            await Shell.Current.GoToAsync(nameof(ConnectionView));
+            await Shell.Current.GoToAsync(nameof(ConnectionView),false);
         }
         else
         {
+            viewModel.User = Constantes.CurrentUser;
             viewModel.GetCurrentPointsCommand.Execute(null);
             viewModel.GetCurrentOffreSpecialsCommand.Execute(null);
             base.OnAppearing();

@@ -59,6 +59,7 @@ namespace AP4
             builder.Services.AddTransient<ConnectionViewModel>();
             builder.Services.AddTransient<InscriptionViewModel>();
             builder.Services.AddSingleton<CommandeViewModel>();
+            builder.Services.AddSingleton<PlusViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<ConnectionView>();
@@ -66,6 +67,7 @@ namespace AP4
             builder.Services.AddSingleton<CommandeView>();
             builder.Services.AddSingleton<ProductPriceView>();
             builder.Services.AddSingleton<AchatView>();
+            builder.Services.AddSingleton<PlusView>();
 
             return builder.Build();
         }

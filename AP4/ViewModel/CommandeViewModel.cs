@@ -1,6 +1,5 @@
 ﻿namespace AP4.ViewModel;
 
-[QueryProperty(nameof(Product), "Product")]
 public partial class CommandeViewModel : BaseViewModel
 {
     readonly CommandeService commandeService;
@@ -146,7 +145,7 @@ public partial class CommandeViewModel : BaseViewModel
     async Task GoToProductPrice(Product p)
     {
         Product = p;
-        await Shell.Current.GoToAsync(nameof(ProductPriceView));
+        await Shell.Current.GoToAsync(nameof(ProductPriceView), false);
     }
 
     [RelayCommand]
@@ -167,7 +166,7 @@ public partial class CommandeViewModel : BaseViewModel
     [RelayCommand]
     async Task GoToAchatView()
     {
-        await Shell.Current.GoToAsync(nameof(AchatView));
+        await Shell.Current.GoToAsync(nameof(AchatView), false);
     }
 
     [RelayCommand]
@@ -176,7 +175,7 @@ public partial class CommandeViewModel : BaseViewModel
         Commande c = new();
         c.product = Product;
 
-        await Shell.Current.GoToAsync("///CommandeView");
+        await Shell.Current.GoToAsync("///CommandeView", false);
         IsProductsCommandeFill = true;
 
         if(monnaie == "currency")
@@ -206,7 +205,7 @@ public partial class CommandeViewModel : BaseViewModel
     [RelayCommand]
     async Task Pay()
     {
-        await Shell.Current.GoToAsync("///CommandeView");
+        await Shell.Current.GoToAsync("///CommandeView", false);
 
         IsProductsCommandeFill = false;
 

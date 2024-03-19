@@ -20,16 +20,14 @@ public partial class MainPageViewModel : BaseViewModel
     {
         if(Constantes.CurrentUser == null)
         {
-            Constantes.CurrentUser = new User();
+            /*Constantes.CurrentUser = new User();
             Constantes.CurrentUser.id = 1;
             Constantes.CurrentUser.nom = "Nom";
             Constantes.CurrentUser.prenom = "prenom";
             Constantes.CurrentUser.telephone = "1234567890";
             Constantes.CurrentUser.dateNaissance = "2003-08-09";
             Constantes.CurrentUser.email = "email@email.com";
-            Constantes.CurrentUser.StockPointsFidelite = 100;
-
-            User = CurrentUser;
+            Constantes.CurrentUser.StockPointsFidelite = 100;*/
         }
 
         if (!allOffreSpecials.Any())
@@ -120,7 +118,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    void GetCurrentOffreSpecials()
+    async void GetCurrentOffreSpecials()
     {
         List<OffreSpecial> list = new();
 

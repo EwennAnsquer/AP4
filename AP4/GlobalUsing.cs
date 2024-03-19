@@ -15,3 +15,5 @@ global using CommunityToolkit.Maui;
 global using System.Globalization;
 global using System.Collections.ObjectModel;
 global using static AP4.Constantes;
+global using System.Text.RegularExpressions;
+global using System.Diagnostics;

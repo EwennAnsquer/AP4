@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AP4.Model"
+             xmlns:viewmodel="clr-namespace:AP4.ViewModel"
+             x:DataType="viewmodel:PlusViewModel"
              x:Class="AP4.View.PlusView"
-             Title="PlusView">
-    <Label Text="Je suis dans Plus " />
+             Title="PlusView"
+             Shell.NavBarIsVisible="False">
+    <ScrollView Orientation="Vertical"
+                VerticalScrollBarVisibility="Never"
+                VerticalOptions="FillAndExpand"
+                Margin="40">
+        <VerticalStackLayout Spacing="20">
+            <Button Text="Compte"
+                    BackgroundColor="{StaticResource Gray400}"
+                    HeightRequest="50"
+                    FontSize="20"
+                    FontFamily="InterSemiBold"/>
+            <Button Text="Historique des commandes"
+                    BackgroundColor="{StaticResource Gray400}"
+                    HeightRequest="50"
+                    FontSize="20"
+                    FontFamily="InterSemiBold"/>
+            <Button Text="Analytics"
+                    BackgroundColor="{StaticResource Gray400}"
+                    HeightRequest="50"
+                    FontSize="20"
+                    FontFamily="InterSemiBold"/>
+            <Button Text="Deconnexion"
+                    Command="{Binding DeconnexionCommand}"
+                    BackgroundColor="{StaticResource Red}"
+                    HeightRequest="50"
+                    FontSize="20"
+                    FontFamily="InterSemiBold"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

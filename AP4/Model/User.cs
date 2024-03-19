@@ -10,4 +10,5 @@ public class User
     public string prenom { get; set; }
     public string dateNaissance { get; set; }
     public string telephone { get; set; }
+    public List<object> lesCategories { get; set; }
 }

@@ -19,9 +19,8 @@
                 <VerticalStackLayout>
                     <Label Text="Mail" 
                            TextColor="White"/>
-                    <controls:BorderlessEntry IsPassword="True"
-                                      Text="{Binding Mail}"
-                                      TextColor="{StaticResource Orange}" />
+                    <controls:BorderlessEntry Text="{Binding Mail}"
+                                              TextColor="{StaticResource Orange}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout>
                     <Label Text="Mot de Passe" 
