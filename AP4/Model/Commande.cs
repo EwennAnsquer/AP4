@@ -2,6 +2,7 @@
 
 public class Commande
 {
-    public Product product {  get; set; }
-    public string monnaie { get; set; }
+    public int id { get; set; }
+    public string dateCommande { get; set; }
+    public string etat { get; set; }
 }

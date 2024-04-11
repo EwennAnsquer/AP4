@@ -4,6 +4,10 @@ public partial class MainPageViewModel : BaseViewModel
 {
     [ObservableProperty]
     User user;
+
+    [ObservableProperty]
+    bool isNotifHasBeenPush = false;
+
     List<OffreSpecial> allOffreSpecials { get; set; } = new();
 
     [ObservableProperty]
@@ -16,6 +20,10 @@ public partial class MainPageViewModel : BaseViewModel
 
     [ObservableProperty]
     List<PointFidelite> closeToEndPoints = new();
+
+    [ObservableProperty]
+    bool isCloseToEndPointsCollVisible = true;
+
     public MainPageViewModel()
     {
         if(Constantes.CurrentUser == null)
@@ -63,11 +71,19 @@ public partial class MainPageViewModel : BaseViewModel
             o2.avantage = "+25";
             o2.description = "Joyeux Anniversaire.";
 
+            OffreSpecial o6 = new OffreSpecial();
+            o6.dateDebut = new DateTime(2024, 04, 1);
+            o6.dateFin = new DateTime(2024, 05, 1);
+            o6.nom = "Anniversaire";
+            o6.avantage = "+25";
+            o6.description = "Joyeux Anniversaire.";
+
             allOffreSpecials.Add(o1);
             allOffreSpecials.Add(o2);
             allOffreSpecials.Add(o3);
             allOffreSpecials.Add(o3);
             allOffreSpecials.Add(o4);
+            allOffreSpecials.Add(o6);
         }
 
         if (!allPoints.Any())
@@ -136,7 +152,7 @@ public partial class MainPageViewModel : BaseViewModel
     [RelayCommand]
     async Task GetCurrentPoints()
     {
-        if (!CurrentOffreSpecials.Any())
+        if (NbPoints == 0)
         {
             foreach (PointFidelite p in allPoints)
             {
@@ -155,6 +171,11 @@ public partial class MainPageViewModel : BaseViewModel
                     ifPointCloseToEnd(p);
                 }
             }
+        }
+
+        if (CloseToEndPoints.Count == 0)
+        {
+            IsCloseToEndPointsCollVisible = false;
         }
     }
 

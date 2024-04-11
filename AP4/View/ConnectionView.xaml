@@ -7,40 +7,72 @@
              x:DataType="viewmodel:ConnectionViewModel"
              x:Class="AP4.View.ConnectionView">
 
-    <VerticalStackLayout HorizontalOptions="Fill"
-                         VerticalOptions="Center"
-                         TranslationY="-100">
-        <Frame BackgroundColor="{StaticResource Orange}"
-               HorizontalOptions="Fill"
-               VerticalOptions="Center"
-               Margin="20"
-               BorderColor="{StaticResource Orange}">
-            <VerticalStackLayout Spacing="15">
-                <VerticalStackLayout>
-                    <Label Text="Mail" 
-                           TextColor="White"/>
-                    <controls:BorderlessEntry Text="{Binding Mail}"
-                                              TextColor="{StaticResource Orange}" />
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Mot de Passe" 
-                           TextColor="White"/>
-                    <controls:BorderlessEntry IsPassword="True"
-                                              Text="{Binding Password}"
-                                              TextColor="{StaticResource Orange}" />
-                </VerticalStackLayout>
-                <Button Text="Connexion" 
-                        Command="{Binding LoginCommand}"
-                        BackgroundColor="White"
-                        TextColor="{StaticResource Orange}" 
-                        Style="{StaticResource reverseButtonStyle}"/>
-            </VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+
+        <Frame IsVisible="{Binding IsBusy}"
+               HorizontalOptions="CenterAndExpand" 
+               VerticalOptions="CenterAndExpand"
+               Grid.Row="1"
+               ZIndex="999"
+               BackgroundColor="White"
+               Padding="0"
+               BorderColor="White">
+            
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" 
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Color="{StaticResource Orange}"
+                               Grid.Row="1"
+                               ZIndex="999"
+                               BackgroundColor="White"
+                               Margin="10"/>
         </Frame>
 
-        <Button Text="Pas encore client ? S'enregistrer"
-                Command="{Binding GoToRegisterCommand}"
-                Margin="20,0,20,0"
-                BackgroundColor="{StaticResource Orange}"/>
-    </VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="Fill"
+                             VerticalOptions="Center"
+                             TranslationY="-100"
+                             Grid.Row="0"
+                             Grid.RowSpan="3">
+            <Frame BackgroundColor="{StaticResource Orange}"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Center"
+                   Margin="20"
+                   BorderColor="{StaticResource Orange}">
+                <VerticalStackLayout Spacing="15">
+                    <VerticalStackLayout>
+                        <Label Text="Mail" 
+                               TextColor="White"/>
+                        <controls:BorderlessEntry Text="{Binding Mail}"
+                                                  TextColor="{StaticResource Orange}" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Mot de Passe" 
+                               TextColor="White"/>
+                        <controls:BorderlessEntry IsPassword="True"
+                                                  Text="{Binding Password}"
+                                                  TextColor="{StaticResource Orange}" />
+                    </VerticalStackLayout>
+                    <Button Text="Connexion" 
+                            Command="{Binding LoginCommand}"
+                            BackgroundColor="White"
+                            TextColor="{StaticResource Orange}" 
+                            Style="{StaticResource reverseButtonStyle}"/>
+                </VerticalStackLayout>
+
+            </Frame>
+
+            <Button Text="Pas encore client ? S'enregistrer"
+                    Command="{Binding GoToRegisterCommand}"
+                    Margin="20,0,20,0"
+                    BackgroundColor="{StaticResource Orange}"/>
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

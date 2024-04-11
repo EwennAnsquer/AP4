@@ -46,7 +46,8 @@
                            VerticalOptions="Center"/>
                 </HorizontalStackLayout>
                 <CollectionView ItemsSource="{Binding CloseToEndPoints}"
-                                Margin="0,0,0,10">
+                                Margin="0,0,0,10"
+                                IsVisible="{Binding IsCloseToEndPointsCollVisible}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="5"
                                            Orientation="Vertical"/>
@@ -92,6 +93,11 @@
                     <LinearItemsLayout Orientation="Vertical" 
                                        ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="Pas d'Offre spécial disponible actuellement."
+                           TextColor="{StaticResource Orange}"
+                           HorizontalOptions="Center"/>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OffreSpecial">
                         <Frame Padding="0">

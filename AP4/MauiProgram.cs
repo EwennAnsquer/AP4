@@ -1,6 +1,5 @@
 ﻿using AP4.Controls;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.PlatformConfiguration;
 
 namespace AP4
 {
@@ -12,6 +11,7 @@ namespace AP4
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("InterBlack.ttf", "InterBlack");
@@ -54,6 +54,8 @@ namespace AP4
             builder.Services.AddSingleton<LoginService>();
             builder.Services.AddSingleton<RegisterService>();
             builder.Services.AddSingleton<CommandeService>();
+            builder.Services.AddSingleton<CategorieService>();
+            builder.Services.AddSingleton<ProductService>();
 
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddTransient<ConnectionViewModel>();

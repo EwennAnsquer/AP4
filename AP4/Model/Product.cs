@@ -2,8 +2,10 @@
 
 public class Product
 {
-    public string nom { get; set; }
+    public int id { get; set; }
+    public string nomProduit { get; set; }
+    public double prixProduit { get; set; }
+    public int pointsFidelite { get; set; }
+    public Categorie laCategorie { get; set; }
     public string imageUrl { get; set; }
-    public int prix { get; set; }
-    public int pointGagne { get; set; }
 }

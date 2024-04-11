@@ -17,11 +17,10 @@
                     HeightRequest="50"
                     FontSize="20"
                     FontFamily="InterSemiBold"/>
-            <Button Text="Historique des commandes"
+            <Button Text="Historique Commandes"
                     BackgroundColor="{StaticResource Gray400}"
-                    HeightRequest="50"
                     FontSize="20"
-                    FontFamily="InterSemiBold"/>
+                    FontFamily="InterSemiBold" />
             <Button Text="Analytics"
                     BackgroundColor="{StaticResource Gray400}"
                     HeightRequest="50"

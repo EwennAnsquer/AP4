@@ -1,4 +1,6 @@
-﻿namespace AP4;
+﻿using static Microsoft.Maui.ApplicationModel.Permissions;
+
+namespace AP4;
 
 public partial class MainPage : ContentPage
 {
@@ -21,8 +23,22 @@ public partial class MainPage : ContentPage
             viewModel.User = Constantes.CurrentUser;
             viewModel.GetCurrentPointsCommand.Execute(null);
             viewModel.GetCurrentOffreSpecialsCommand.Execute(null);
+
+            if (viewModel.CurrentOffreSpecials.Count != 0 && viewModel.IsNotifHasBeenPush == false)
+            {
+                var request = new NotificationRequest
+                {
+                    NotificationId = new Random().Next(),
+                    Title = "Offres spéciales disponibles.",
+                    CategoryType = NotificationCategoryType.Status,
+                };
+
+                viewModel.IsNotifHasBeenPush = true;
+
+                await LocalNotificationCenter.Current.Show(request);
+            }
+
             base.OnAppearing();
         }
     }
-
 }

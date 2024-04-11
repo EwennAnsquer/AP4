@@ -7,12 +7,12 @@
              x:DataType="viewmodel:CommandeViewModel"
              Shell.BackgroundColor="{StaticResource Orange}"
              Shell.TitleColor="White"
-             Title='{Binding Product.nom, StringFormat="Achat d&apos;un {0}"}'>
+             Title='{Binding Product.nomProduit, StringFormat="Achat d&apos;un {0}"}'>
 
     <FlexLayout Direction="Column"
                 JustifyContent="Center"
                 Margin="40">
-        <Button Text="{Binding Product.prix, StringFormat='Acheter pour {0}€'}"
+        <Button Text="{Binding Product.prixProduit, StringFormat='Acheter pour {0}€'}"
                 BackgroundColor="{StaticResource Orange}"
                 FontSize="20"
                 FontFamily="InterBold"
@@ -20,7 +20,7 @@
                 Margin="0,0,0,50"
                 Command="{Binding GoToBackFromProductPriceViewCommand}"
                 CommandParameter="currency"/>
-        <Button Text="{Binding Product.pointGagne, StringFormat='Échanger pour {0} points'}"
+        <Button Text="{Binding Product.pointsFidelite, StringFormat='Échanger pour {0} points'}"
                 BackgroundColor="{StaticResource Orange}"
                 FontSize="20"
                 FontFamily="InterBold"

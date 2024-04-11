@@ -22,7 +22,7 @@
                        TextColor="{StaticResource Orange}"/>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Commande">
+                <DataTemplate x:DataType="model:Product">
                     <Frame Padding="0"
                            BackgroundColor="{StaticResource Orange}"
                            BorderColor="{StaticResource Orange}"
@@ -31,10 +31,10 @@
                                     JustifyContent="SpaceBetween"
                                     AlignItems="Center"
                                     Margin="10">
-                            <Label Text="{Binding product.nom}" 
+                            <Label Text="{Binding nomProduit}" 
                                    TextColor="White"/>
-                            <Label Text="{Binding monnaie}" 
-                                   TextColor="White"/>
+                            <!--<Label Text="{Binding monnaie}" 
+                                   TextColor="White"/>-->
                             <Button Text="Effacer" 
                                     BackgroundColor="{StaticResource Orange}" 
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CommandeViewModel}}, Path=DeleteItemCommand}"
