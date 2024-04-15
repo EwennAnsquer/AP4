@@ -9,6 +9,8 @@ public partial class CommandeViewModel : BaseViewModel
 
     ProductService productService;
 
+    UserService userService;
+
     [ObservableProperty]
     ObservableCollection<Categorie> allProductCategorie = new();
 
@@ -33,11 +35,12 @@ public partial class CommandeViewModel : BaseViewModel
     [ObservableProperty]
     int productsCommandTotalPoints = 0;
 
-    public CommandeViewModel(CommandeService commandeService, CategorieService categorieService, ProductService productService)
+    public CommandeViewModel(CommandeService commandeService, CategorieService categorieService, ProductService productService, UserService userService)
     {
         this.commandeService = commandeService;
         this.categorieService = categorieService;
         this.productService = productService;
+        this.userService = userService;
     }
 
     [RelayCommand]
@@ -99,23 +102,27 @@ public partial class CommandeViewModel : BaseViewModel
     [RelayCommand]
     async Task GoToBackFromProductPriceView(string monnaie)
     {
-        //Commande c = new();
-        //c.product = Product;
-
         await Shell.Current.GoToAsync("///CommandeView", false);
         IsProductsCommandeFill = true;
 
-        if(monnaie == "currency")
+        if(monnaie == "€")
         {
-            //c.monnaie = Product.prixProduit + "€";
             ProductsCommandTotalPrice += Product.prixProduit;
-        }else if (monnaie == "points")
+        }
+        else if (monnaie == "points")
         {
-            //c.monnaie = Product.pointsFidelite+" points";
             ProductsCommandTotalPoints += Product.pointsFidelite;
         }
 
-        ProductsCommande.Add(Product);
+        Product p = new Product();
+        p.prixProduit = Product.prixProduit;
+        p.pointsFidelite = Product.pointsFidelite;
+        p.nomProduit = Product.nomProduit;
+        p.id = Product.id;
+        p.laCategorie = Product.laCategorie;
+        p.imageUrl = Product.imageUrl;
+        p.actualCurrency = monnaie;
+        ProductsCommande.Add(p);
 
         Product = null;
     }
@@ -123,8 +130,16 @@ public partial class CommandeViewModel : BaseViewModel
     [RelayCommand]
     async Task DeleteItem(Product c)
     {
-        int index = ProductsCommande.IndexOf(c);
-        ProductsCommande.RemoveAt(index);
+        if (c.actualCurrency == "€")
+        {
+            ProductsCommandTotalPrice -= c.prixProduit;
+        }
+        else if (c.actualCurrency == "points")
+        {
+            ProductsCommandTotalPoints -= c.pointsFidelite;
+        }
+
+        ProductsCommande.Remove(c);
 
         if(ProductsCommande.Count==0) IsProductsCommandeFill=false;
     }
@@ -132,29 +147,100 @@ public partial class CommandeViewModel : BaseViewModel
     [RelayCommand]
     async Task Pay()
     {
-        Commande commande = await commandeService.CreerCommande();
-
-        List<Product> banList = new();
-
-        foreach (Product p in ProductsCommande)
+        if (Constantes.CurrentUser.StockPointsFidelite < ProductsCommandTotalPoints)
         {
-            if (!banList.Contains(p))
-            {
-                int quantite = ProductsCommande.Count(x => x == p);
-                await commandeService.CreerCommander(p.id, commande.id, quantite);
-                banList.Add(p);
-            }
+            await Shell.Current.DisplayAlert("Error Pas assez de points", "Vous n'avez pas assez de points pour payer cette commande. Essayez de payer en euros.", "OK");
+            return;
         }
 
-        await Shell.Current.GoToAsync("///CommandeView", false);
+        Commande commande = await CreerCommande();
 
-        IsProductsCommandeFill = false;
+        if(commande != null)
+        {
+            List<Product> banList = new();
 
-        ProductsCommande.Clear();
+            foreach (Product p in ProductsCommande)
+            {
+                if (!banList.Contains(p))
+                {
+                    int quantite = ProductsCommande.Count(x => x == p);
+                    await CreerCommander(p.id, commande.id, quantite);
+                    banList.Add(p);
+                }
+            }
 
-        ProductsCommandTotalPoints = 0;
-        ProductsCommandTotalPoints = 0;
+            await Shell.Current.GoToAsync("///CommandeView", false);
+
+            IsProductsCommandeFill = false;
+
+            ProductsCommande.Clear();
+
+            ProductsCommandTotalPoints = 0;
+            ProductsCommandTotalPoints = 0;
+
+            Constantes.CurrentUser.StockPointsFidelite -= ProductsCommandTotalPoints;
+            Constantes.CurrentUser.StockPointsFidelite += (int)(ProductsCommandTotalPrice * 0.25);
+
+            try
+            {
+                IsBusy = true;
+                await userService.UpdateUserStockPointsFidelite();
+                await Shell.Current.DisplayAlert("Commande", "Merci d'avoir commander.", "OK");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                await Shell.Current.DisplayAlert("Creer Commande Error", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+        }
 
         ((AppShell)App.Current.MainPage).SwitchtoTab(0);
+    }
+
+    async Task<Commande> CreerCommande()
+    {
+        Commande commande = null;
+
+        try
+        {
+            IsBusy = true;
+            commande = await commandeService.CreerCommande();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            await Shell.Current.DisplayAlert("Creer Commande Error", ex.Message, "OK");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+
+        return commande;
+    }
+
+    async Task CreerCommander(int productId, int commandeId, int quantite)
+    {
+
+        try
+        {
+            IsBusy = true;
+            await commandeService.CreerCommander(productId, commandeId, quantite);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            await Shell.Current.DisplayAlert("Creer Commander Error", ex.Message, "OK");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 }

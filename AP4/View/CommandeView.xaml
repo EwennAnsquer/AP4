@@ -84,9 +84,7 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Product">
-                            <Frame 
-
-                                   Style="{StaticResource Key=CommandeFrame}">
+                            <Frame Style="{StaticResource Key=CommandeFrame}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CommandeViewModel}}, Path=GoToProductPriceCommand}"
                                                           CommandParameter="{Binding .}"/>

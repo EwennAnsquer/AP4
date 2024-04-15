@@ -12,7 +12,7 @@
                 VerticalOptions="FillAndExpand"
                 Margin="40">
         <VerticalStackLayout Spacing="20">
-            <Button Text="Compte"
+            <!--<Button Text="Compte"
                     BackgroundColor="{StaticResource Gray400}"
                     HeightRequest="50"
                     FontSize="20"
@@ -25,7 +25,7 @@
                     BackgroundColor="{StaticResource Gray400}"
                     HeightRequest="50"
                     FontSize="20"
-                    FontFamily="InterSemiBold"/>
+                    FontFamily="InterSemiBold"/>-->
             <Button Text="Deconnexion"
                     Command="{Binding DeconnexionCommand}"
                     BackgroundColor="{StaticResource Red}"

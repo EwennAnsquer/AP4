@@ -9,10 +9,39 @@
              Shell.BackgroundColor="{StaticResource Orange}"
              Shell.TitleColor="White">
 
-    <StackLayout>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Frame IsVisible="{Binding IsBusy}"
+               HorizontalOptions="CenterAndExpand" 
+               VerticalOptions="CenterAndExpand"
+               Grid.Row="1"
+               ZIndex="999"
+               BackgroundColor="White"
+               Padding="0"
+               BorderColor="White">
+
+            <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" 
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="CenterAndExpand"
+                               Color="{StaticResource Orange}"
+                               Grid.Row="1"
+                               ZIndex="999"
+                               BackgroundColor="White"
+                               Margin="10"/>
+        </Frame>
+
         <CollectionView ItemsSource="{Binding ProductsCommande}"
                         Margin="20"
-                        VerticalOptions="FillAndExpand">
+                        VerticalOptions="FillAndExpand"
+                        Grid.Row="0"
+                        Grid.RowSpan="3">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="15" 
                                    Orientation="Vertical"/>
@@ -33,12 +62,18 @@
                                     Margin="10">
                             <Label Text="{Binding nomProduit}" 
                                    TextColor="White"/>
-                            <!--<Label Text="{Binding monnaie}" 
-                                   TextColor="White"/>-->
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding prixProduit, StringFormat='{0} '}"
+                                       TextColor="White"/>
+                                <Label Text="{Binding actualCurrency, StringFormat=' {0}'}"
+                                       TextColor="White">
+                                </Label>
+                            </HorizontalStackLayout>
                             <Button Text="Effacer" 
                                     BackgroundColor="{StaticResource Orange}" 
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CommandeViewModel}}, Path=DeleteItemCommand}"
-                                    CommandParameter="{Binding .}"/>
+                                    CommandParameter="{Binding .}">
+                            </Button>
                         </FlexLayout>
                     </Frame>        
                 </DataTemplate>
@@ -48,7 +83,11 @@
                 Text="Payer"
                 TextColor="White"
                 Margin="20"
-                Command="{Binding PayCommand}"/>
-    </StackLayout>
+                Command="{Binding PayCommand}"
+                Grid.Row="2"
+                VerticalOptions="End"
+                IsVisible="{Binding IsProductsCommandeFill}"
+                IsEnabled="{Binding IsProductsCommandeFill}"/>
+    </Grid>
 
 </ContentPage>

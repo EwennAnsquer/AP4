@@ -13,7 +13,7 @@ public class CommandeService
     {
         var data = new
         {
-            Id = Constantes.CurrentUser.id
+            UserID = Constantes.CurrentUser.id
         };
 
         var response = await GetResponsePost(_httpClient, "/api/mobile/creerCommande", JsonConvert.SerializeObject(data));
@@ -25,6 +25,7 @@ public class CommandeService
     {
         var data = new
         {
+            UserID = Constantes.CurrentUser.id,
             Id = Constantes.CurrentUser.id,
             leProduit = produit,
             laCommande = commande,

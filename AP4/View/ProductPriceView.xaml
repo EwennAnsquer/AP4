@@ -19,7 +19,7 @@
                 Padding="20"
                 Margin="0,0,0,50"
                 Command="{Binding GoToBackFromProductPriceViewCommand}"
-                CommandParameter="currency"/>
+                CommandParameter="€"/>
         <Button Text="{Binding Product.pointsFidelite, StringFormat='Échanger pour {0} points'}"
                 BackgroundColor="{StaticResource Orange}"
                 FontSize="20"

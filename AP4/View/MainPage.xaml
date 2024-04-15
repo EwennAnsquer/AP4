@@ -4,14 +4,9 @@
              xmlns:model="clr-namespace:AP4.Model"
              xmlns:viewmodel="clr-namespace:AP4.ViewModel"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
-             xmlns:local="clr-namespace:AP4.Converters"
              x:DataType="viewmodel:MainPageViewModel"
              x:Class="AP4.MainPage"
              Shell.NavBarIsVisible="False">
-
-    <ContentPage.Resources>
-        <local:FormatLoosePointLabel x:Key="formatLoosePointLabel" />
-    </ContentPage.Resources>
 
     <Page.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{StaticResource Orange}"/>
@@ -36,7 +31,7 @@
                 </StackLayout>
                 <HorizontalStackLayout Padding="20"
                                        HorizontalOptions="FillAndExpand">
-                    <Label Text="{Binding NbPoints}" 
+                    <Label Text="{Binding User.StockPointsFidelite}" 
                            FontSize="50"
                            FontFamily="InterBlack"
                            Style="{StaticResource HeroLabel}"/>
@@ -45,42 +40,6 @@
                            Style="{StaticResource HeroLabel}"
                            VerticalOptions="Center"/>
                 </HorizontalStackLayout>
-                <CollectionView ItemsSource="{Binding CloseToEndPoints}"
-                                Margin="0,0,0,10"
-                                IsVisible="{Binding IsCloseToEndPointsCollVisible}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="5"
-                                           Orientation="Vertical"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:PointFidelite">
-                            <Frame Padding="10"
-                                   WidthRequest="220"
-                                   BackgroundColor="Red"
-                                   HorizontalOptions="FillAndExpand"
-                                   BorderColor="Red">
-                                <Label 
-                                       TextColor="White"
-                                       FontSize="20"
-                                       FontFamily="InterSemiBold"
-                                       TextTransform="Uppercase"
-                                       HorizontalTextAlignment="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <FormattedString.Spans>
-                                                <Span Text="{Binding points, StringFormat='-{0} points dans '}"
-                                                      TextColor="White"/>
-                                                <Span Text="{Binding dateFin, Converter={StaticResource formatLoosePointLabel}, StringFormat=' {0} jours !'}" 
-                                                      TextColor="White"/>
-                                            </FormattedString.Spans>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-
-                                </Label>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
             </FlexLayout>
 
             <Label Style="{StaticResource OffreSpecialMainTitle}"/>

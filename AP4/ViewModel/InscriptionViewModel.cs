@@ -25,10 +25,14 @@ public partial class InscriptionViewModel : BaseViewModel
     string dateAnniversaire = DateTime.Now.ToString();
 
     readonly RegisterService RegisterService;
+    readonly CategorieService CategorieService;
+    readonly ProductService ProductService;
 
-    public InscriptionViewModel(RegisterService registerService)
+    public InscriptionViewModel(RegisterService registerService, CategorieService categorieService, ProductService productService)
     {
         this.RegisterService = registerService;
+        this.CategorieService = categorieService;
+        this.ProductService = productService;
     }
 
     [RelayCommand]
@@ -64,9 +68,17 @@ public partial class InscriptionViewModel : BaseViewModel
         try
         {
             IsBusy = true;
-            await RegisterService.Register(Mail, Password, Nom, Prenom, Telephone, DateAnniversaire);
+            User user = await RegisterService.Register(Mail, Password, Nom, Prenom, Telephone, DateAnniversaire);
             await Shell.Current.DisplayAlert("Registration", "Registration is successfully done.", "OK");
+
             AllFieldsEmpty();
+
+            Categorie c1 = await CategorieService.CreerCategorie(user.id, "Tacos", "tacos.png");
+            Categorie c2 = await CategorieService.CreerCategorie(user.id,"Burger","burger.png");
+
+            await ProductService.CreerProduit(user.id, "Tacos", 10, 10, "tacos.png", c1.id);
+
+            await ProductService.CreerProduit(user.id, "Big-Mac", 5,5,"bigmac.png",c2.id);
         }
         catch (Exception ex)
         {

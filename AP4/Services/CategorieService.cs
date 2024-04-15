@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Json;
-
-namespace AP4.Services;
+﻿namespace AP4.Services;
 
 public class CategorieService
 {
@@ -20,6 +18,20 @@ public class CategorieService
         var response = await GetResponsePost(_httpClient, "/api/mobile/GetAllCategories", JsonConvert.SerializeObject(data));
 
         return await response.Content.ReadFromJsonAsync<List<Categorie>>();
+    }
+
+    public async Task<Categorie> CreerCategorie(int id, string nomCategorie, string urlImage)
+    {
+        var data = new
+        {
+            UserID = id,
+            nomCategorie = nomCategorie,
+            urlImage = urlImage,
+        };
+
+        var response = await GetResponsePost(_httpClient, "/api/mobile/creerCategorie", JsonConvert.SerializeObject(data));
+
+        return await response.Content.ReadFromJsonAsync<Categorie>();
     }
 }
 
