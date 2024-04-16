@@ -8,7 +8,7 @@ public class CategorieService
         _httpClient = new HttpClient();
     }
 
-    public async Task<List<Categorie>> GetAllCategorie()
+    public async Task<List<Categorie>> GetAllCategorie() //permet de récupérer toutes les catégories
     {
         var data = new
         {
@@ -20,7 +20,7 @@ public class CategorieService
         return await response.Content.ReadFromJsonAsync<List<Categorie>>();
     }
 
-    public async Task<Categorie> CreerCategorie(int id, string nomCategorie, string urlImage)
+    public async Task<Categorie> CreerCategorie(int id, string nomCategorie, string urlImage) //permet de créer des catégories
     {
         var data = new
         {

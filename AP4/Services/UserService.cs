@@ -9,7 +9,7 @@ public class UserService
         _httpClient = new HttpClient();
     }
 
-    public async Task UpdateUserStockPointsFidelite()
+    public async Task UpdateUserStockPointsFidelite() //permet d'update les points de fidélités d'un user
     {
         var data = new
         {
@@ -20,7 +20,7 @@ public class UserService
         var response = await GetResponsePost(_httpClient, "/api/mobile/updateUser", JsonConvert.SerializeObject(data));
     }
 
-    public async Task<User> GetFindUserByEmail()
+    public async Task<User> GetFindUserByEmail() //permet de récupérer certaines des infos sur un user avec une adresse mail
     {
         var data = new
         {

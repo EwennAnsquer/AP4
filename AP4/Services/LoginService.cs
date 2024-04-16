@@ -11,7 +11,7 @@ public class LoginService
         _httpClient = new HttpClient();
     }
 
-    public async Task<User> Login(string Mail, string Password)
+    public async Task<User> Login(string Mail, string Password) //permet de se connecter
     {
         var data = new
         {

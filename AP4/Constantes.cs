@@ -2,10 +2,10 @@
 
 public class Constantes
 {
-    public static User CurrentUser { get; set; } = null;
-    public static string BASE_URL { get; } = "http://172.17.0.62:8082";
+    public static User CurrentUser { get; set; } = null; //stockage de l'utilisateur
+    public static string BASE_URL { get; } = "http://172.17.0.62:8082"; //stockage de l'url pour l'api
 
-    public async static Task DisplayAlert(string txt)
+    public async static Task DisplayAlert(string txt) //permet de facilement afficher des données pour le debug
     {
         await Shell.Current.DisplayAlert("test", txt, "OK");
     }

@@ -4,7 +4,7 @@ public partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
-    bool isBusy;
+    bool isBusy; //permet de gérer l'état de la page pour l'activity indicator
 
     [ObservableProperty]
     string title = "";

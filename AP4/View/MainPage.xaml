@@ -31,7 +31,7 @@
                 </StackLayout>
                 <HorizontalStackLayout Padding="20"
                                        HorizontalOptions="FillAndExpand">
-                    <Label Text="{Binding User.StockPointsFidelite}" 
+                    <Label Text="{Binding User.StockPointsFidelite, Mode=TwoWay}" 
                            FontSize="50"
                            FontFamily="InterBlack"
                            Style="{StaticResource HeroLabel}"/>

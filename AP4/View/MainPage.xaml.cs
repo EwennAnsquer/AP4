@@ -2,17 +2,17 @@
 
 public partial class MainPage : ContentPage
 {
-    readonly MainPageViewModel viewModel;
+    MainPageViewModel viewModel;
     public MainPage(MainPageViewModel mainPageViewModel)
     {
-        InitializeComponent();
         BindingContext = mainPageViewModel;
         this.viewModel = mainPageViewModel;
+        InitializeComponent();
     }
 
     protected async override void OnAppearing()
     {
-        if (Constantes.CurrentUser == null)
+        if (Constantes.CurrentUser == null) //si il n'y a pas de user enregistrer alors on change de page vers une page de login sinon on passe le user dans le viewModel
         {
             await Shell.Current.GoToAsync(nameof(ConnectionView),false);
         }

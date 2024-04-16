@@ -11,7 +11,7 @@ public partial class ConnectionView : ContentPage
 		InitializeComponent();
 		this.viewModel = viewModel;
 		BindingContext = viewModel;
-        AppShell.SetTabBarIsVisible(this, false);
-		AppShell.SetNavBarIsVisible(this, false);
+        AppShell.SetTabBarIsVisible(this, false); //rend invisible la tab bar présente sur la page commande par exemple
+		AppShell.SetNavBarIsVisible(this, false); //rend invisible la nav bar
     }
 }

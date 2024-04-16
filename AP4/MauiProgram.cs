@@ -64,7 +64,7 @@ namespace AP4
             builder.Services.AddSingleton<CommandeViewModel>();
             builder.Services.AddSingleton<PlusViewModel>();
 
-            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<ConnectionView>();
             builder.Services.AddTransient<InscriptionView>();
             builder.Services.AddSingleton<CommandeView>();

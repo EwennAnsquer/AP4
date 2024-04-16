@@ -10,7 +10,7 @@ public class RegisterService
         _httpClient = new HttpClient();
     }
 
-    public async Task<User> Register(string Mail, string Password, string Nom, string Prenom, string Telephone, string DateAnniversaire)
+    public async Task<User> Register(string Mail, string Password, string Nom, string Prenom, string Telephone, string DateAnniversaire) //permet de créer un nouveau compte user
     {
         var data = new
         {

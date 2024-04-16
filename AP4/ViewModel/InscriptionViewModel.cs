@@ -6,7 +6,7 @@ public partial class InscriptionViewModel : BaseViewModel
 {
     [ObservableProperty]
     string mail;
-    readonly string mailRegex = @"^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$";
+    readonly string mailRegex = @"^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$"; //regex pour les mails
 
     [ObservableProperty]
     string password;
@@ -19,7 +19,7 @@ public partial class InscriptionViewModel : BaseViewModel
 
     [ObservableProperty]
     string telephone;
-    readonly string telephoneRegex = @"^\d{10}$";
+    readonly string telephoneRegex = @"^\d{10}$"; //regex pour les téléphones
 
     [ObservableProperty]
     string dateAnniversaire = DateTime.Now.ToString();
@@ -36,29 +36,27 @@ public partial class InscriptionViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task Register()
+    async Task Register() //permet de s'enregistrer si on valide toutes les conditions
     {
-        //await Shell.Current.DisplayAlert("test", Mail+" "+Password+" "+Nom+" "+" "+Prenom+" "+Telephone+" "+DateAnniversaire, "OK");
-
-        if (!AreAllFieldsFilled())
+        if (!AreAllFieldsFilled()) //si tous les champs ne sont pas remplis
         {
             await Shell.Current.DisplayAlert("Error", "Veuillez remplir tous les champs.", "OK");
             return;
         }
 
-        if (!IsEmailValid())
+        if (!IsEmailValid()) //si l'email n'est pas valide
         {
             await Shell.Current.DisplayAlert("Error", "Le mail n'est pas conforme.", "OK");
             return;
         }
 
-        if (!IsTelephoneValid())
+        if (!IsTelephoneValid()) //si le téléphone n'est pas valide
         {
             await Shell.Current.DisplayAlert("Error", "Le numéro de téléphone n'est pas conforme.", "OK");
             return;
         }
 
-        if(!IsDateAnniversaireValid())
+        if(!IsDateAnniversaireValid()) //si la date d'anniversaire n'est pas valide
         {
             await DisplayAlert(DateAnniversaire);
             await Shell.Current.DisplayAlert("Error", "La date d'anniversaire n'est pas valide.", "OK");
@@ -68,16 +66,15 @@ public partial class InscriptionViewModel : BaseViewModel
         try
         {
             IsBusy = true;
-            User user = await RegisterService.Register(Mail, Password, Nom, Prenom, Telephone, DateAnniversaire);
+            User user = await RegisterService.Register(Mail, Password, Nom, Prenom, Telephone, DateAnniversaire); //création du compte
             await Shell.Current.DisplayAlert("Registration", "Registration is successfully done.", "OK");
 
-            AllFieldsEmpty();
+            AllFieldsEmpty(); //permet de vider tous les champs
 
-            Categorie c1 = await CategorieService.CreerCategorie(user.id, "Tacos", "tacos.png");
+            Categorie c1 = await CategorieService.CreerCategorie(user.id, "Tacos", "tacos.png"); //création et attribution des catégories pour le user
             Categorie c2 = await CategorieService.CreerCategorie(user.id,"Burger","burger.png");
 
-            await ProductService.CreerProduit(user.id, "Tacos", 10, 10, "tacos.png", c1.id);
-
+            await ProductService.CreerProduit(user.id, "Tacos", 10, 10, "tacos.png", c1.id); //création et attribution des produits pour le user
             await ProductService.CreerProduit(user.id, "Big-Mac", 5,5,"bigmac.png",c2.id);
         }
         catch (Exception ex)
@@ -92,12 +89,12 @@ public partial class InscriptionViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task GoToLogin()
+    async Task GoToLogin() //change de view vers la view LoginView
     {
         await Shell.Current.GoToAsync(nameof(ConnectionView), false);
     }
 
-    private bool AreAllFieldsFilled()
+    private bool AreAllFieldsFilled() //renvoie un booléen qui permet de savoir si un champ est null, vide, ou à uniquement que des blancs
     {
         return !string.IsNullOrWhiteSpace(Mail)
             && !string.IsNullOrWhiteSpace(Password)
@@ -107,7 +104,7 @@ public partial class InscriptionViewModel : BaseViewModel
             && !string.IsNullOrWhiteSpace(DateAnniversaire);
     }
 
-    private void AllFieldsEmpty()
+    private void AllFieldsEmpty() //permet de rendre tous les champs vide
     {
         Mail = string.Empty;
         Password = string.Empty;
@@ -117,12 +114,12 @@ public partial class InscriptionViewModel : BaseViewModel
         DateAnniversaire = DateTime.Now.ToString();
     }
 
-    public bool IsEmailValid()
+    public bool IsEmailValid() //permet de savoir si un email est valide
     {
         return Regex.IsMatch(Mail, mailRegex);
     }
 
-    public bool IsDateAnniversaireValid()
+    public bool IsDateAnniversaireValid() //permet de savoir si un email est valide
     {
         DateTime date;
         if(DateTime.TryParseExact(DateAnniversaire, "M/d/yyyy h:mm:ss tt", null, System.Globalization.DateTimeStyles.None, out date))
@@ -139,7 +136,7 @@ public partial class InscriptionViewModel : BaseViewModel
         return false;
     }
 
-    public bool IsTelephoneValid()
+    public bool IsTelephoneValid() //permet de savoir si un numéro de téléphone est valide
     {
         return Regex.IsMatch(Telephone, telephoneRegex);
     }

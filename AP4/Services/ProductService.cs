@@ -10,7 +10,7 @@ public class ProductService
         _httpClient = new HttpClient();
     }
 
-    public async Task<List<Product>> GetAllProductFromCategorie(int id)
+    public async Task<List<Product>> GetAllProductFromCategorie(int id) //permet de récupérer tous les produits d'une catégorie
     {
         var data = new
         {
@@ -27,7 +27,7 @@ public class ProductService
         return await response.Content.ReadFromJsonAsync<List<Product>>();
     }
 
-    public async Task CreerProduit(int id, string nomProduit, int prixProduit, int pointsFidelite, string imageUrl, int categorieId)
+    public async Task CreerProduit(int id, string nomProduit, int prixProduit, int pointsFidelite, string imageUrl, int categorieId) //permet de créer un produit et de le lier à un user
     {
         var data = new
         {

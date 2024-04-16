@@ -9,7 +9,7 @@ public class CommandeService
         _httpClient = new HttpClient();
     }
 
-    public async Task<Commande> CreerCommande()
+    public async Task<Commande> CreerCommande() //permet de créer des commandes
     {
         var data = new
         {
@@ -21,7 +21,7 @@ public class CommandeService
         return await response.Content.ReadFromJsonAsync<Commande>();
     }
 
-    public async Task CreerCommander(int produit, int commande, int quantite)
+    public async Task CreerCommander(int produit, int commande, int quantite) //permet de lier un produit avec une commande
     {
         var data = new
         {

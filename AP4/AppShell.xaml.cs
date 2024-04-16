@@ -14,7 +14,7 @@
             Routing.RegisterRoute(nameof(CommandeView), typeof(CommandeView));
         }
 
-        public void SwitchtoTab(int tabIndex)
+        public void SwitchtoTab(int tabIndex) //permet de savoir le tab de la tab bar actuellement uttilisé
         {
             Device.BeginInvokeOnMainThread(() =>
             {

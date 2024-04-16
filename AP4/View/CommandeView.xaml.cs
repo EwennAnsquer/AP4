@@ -12,7 +12,7 @@ public partial class CommandeView : ContentPage
 
     protected async override void OnAppearing()
     {
-        if(viewModel.AllProductCategorie.Count == 0)
+        if(viewModel.AllProductCategorie.Count == 0) //si il n'y a pas de catégorie alors on va les récupérer avec l'api
         { 
             List<Categorie> list = await viewModel.CategorieService.GetAllCategorie();
 
@@ -24,7 +24,7 @@ public partial class CommandeView : ContentPage
 
         if (viewModel.SelectCategorie == null)
         {
-            viewModel.SelectCategorie = viewModel.AllProductCategorie[0];
+            viewModel.SelectCategorie = viewModel.AllProductCategorie[0]; //on sélectionne la première catégorie dans la collection view
         }
     }
 }

@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:AP4"
     xmlns:view="clr-namespace:AP4.View">
 
-    <TabBar x:Name="shelltabbar">
+    <TabBar x:Name="shelltabbar"> <!-- création de la nav bar -->
         <ShellContent Title="Accueil"
                       Shell.NavBarIsVisible="False"
                       ContentTemplate="{DataTemplate local:MainPage}"
